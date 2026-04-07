@@ -13,7 +13,7 @@ A live version of this project is available at https://mwood77.github.io/ws4kp-i
 
 ## Czech translacion
 
-This project is a fork of ['ws4kp-international'](https://github.com/mwood77/ws4kp-international) by [@mwood77](https://github.com/mwood77) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
+This project is a fork of [`ws4kp-international`](https://github.com/mwood77/ws4kp-international) by [@mwood77](https://github.com/mwood77) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
 
 ## About
 

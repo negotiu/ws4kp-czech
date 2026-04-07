@@ -11,6 +11,10 @@ This project is a fork of [`ws4kp`](https://github.com/netbymatt/ws4kp) by [@net
 
 A live version of this project is available at https://mwood77.github.io/ws4kp-international
 
+## Czech translacion
+
+This project is a fork of [@mwood77](https://github.com/mwood77/ws4kp-international) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
+
 ## About
 
 This project aims to bring back the feel of the 90's with a weather forecast that has the look and feel of The Weather Channel at that time but available in a modern way. 

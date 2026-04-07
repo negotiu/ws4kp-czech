@@ -1,20 +1,24 @@
 [![build-docker](https://github.com/mwood77/ws4kp-international/actions/workflows/build-docker.yaml/badge.svg)](https://github.com/mwood77/ws4kp-international/actions/workflows/build-docker.yaml)
 [![pages-build-deployment](https://github.com/mwood77/ws4kp-international/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/mwood77/ws4kp-international/actions/workflows/pages/pages-build-deployment)
 
-# WeatherStar 4000+ (International)
+# WeatherStar 4000+ (International(Czech))
 
 <div align="center"> 
     <img src="./gif.gif" alt="Weatherstar 4000+ International" width="600">
 </div>
 
-This project is a fork of [`ws4kp`](https://github.com/netbymatt/ws4kp) by [@netbymatt](https://github.com/netbymatt), which has been refactored to run on [Open Meteo's aggregated forecast API](https://open-meteo.com/en/docs). This means this fork of the `ws4kp` works for locations outside of the USA.
 
-A live version of this project is available at https://mwood77.github.io/ws4kp-international
 
 ## Czech translation
 
 This project is a fork of [`ws4kp-international`](https://github.com/mwood77/ws4kp-international) by [@mwood77](https://github.com/mwood77) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
 
+
+
+
+This project is a fork of [`ws4kp`](https://github.com/netbymatt/ws4kp) by [@netbymatt](https://github.com/netbymatt), which has been refactored to run on [Open Meteo's aggregated forecast API](https://open-meteo.com/en/docs). This means this fork of the `ws4kp` works for locations outside of the USA.
+
+A live version of this project is available at https://mwood77.github.io/ws4kp-international
 ## About
 
 This project aims to bring back the feel of the 90's with a weather forecast that has the look and feel of The Weather Channel at that time but available in a modern way. 

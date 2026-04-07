@@ -14,7 +14,7 @@
 This project is a fork of [`ws4kp-international`](https://github.com/mwood77/ws4kp-international) by [@mwood77](https://github.com/mwood77) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
 
 
-
+### Original
 
 This project is a fork of [`ws4kp`](https://github.com/netbymatt/ws4kp) by [@netbymatt](https://github.com/netbymatt), which has been refactored to run on [Open Meteo's aggregated forecast API](https://open-meteo.com/en/docs). This means this fork of the `ws4kp` works for locations outside of the USA.
 

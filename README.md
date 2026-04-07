@@ -4,7 +4,7 @@
 # WeatherStar 4000+ (International)
 
 <div align="center"> 
-    <img src="./overview.gif" alt="Weatherstar 4000+ International" width="600">
+    <img src="./gif.gif" alt="Weatherstar 4000+ International" width="600">
 </div>
 
 This project is a fork of [`ws4kp`](https://github.com/netbymatt/ws4kp) by [@netbymatt](https://github.com/netbymatt), which has been refactored to run on [Open Meteo's aggregated forecast API](https://open-meteo.com/en/docs). This means this fork of the `ws4kp` works for locations outside of the USA.

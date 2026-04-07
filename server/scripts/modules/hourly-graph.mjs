@@ -10,7 +10,7 @@ import ConversionHelpers from './utils/conversionHelpers.mjs';
 
 class HourlyGraph extends WeatherDisplay {
 	constructor(navId, elemId, defaultActive) {
-		super(navId, elemId, 'Hourly Graph', defaultActive);
+		super(navId, elemId, 'Hodinový graf', defaultActive);
 
 		// move the top right data into the correct location on load
 		document.addEventListener('DOMContentLoaded', () => {

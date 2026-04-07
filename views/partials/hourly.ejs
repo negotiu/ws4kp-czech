@@ -1,9 +1,9 @@
-<%- include('header.ejs', {title: 'Hourly Forecast' , hasTime: true }) %>
+<%- include('header.ejs', {titleDual:{ top: 'Hodinová' , bottom: 'Předpověď' }, hasTime: true }) %>
 	<div class="main has-scroll hourly">
 		<div class="column-headers">
-			<div class="temp">TEMP</div>
-			<div class="like">LIKE</div>
-			<div class="wind">WIND</div>
+			<div class="temp">TEPL</div>
+			<div class="like">POCIT</div>
+			<div class="wind">VÍTR</div>
 		</div>
 		<div class="hourly-lines">
 			<div class="hourly-row template">

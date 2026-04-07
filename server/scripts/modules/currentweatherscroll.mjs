@@ -51,14 +51,50 @@ const drawScreen = async () => {
 	drawCondition(screens[screenIndex](data));
 };
 
+const conditionTranslations = {
+	'Clear sky': 'Jasno',
+	'Mainly clear': 'Většinou jasno',
+	'Partly cloudy': 'Polojasno',
+	'Overcast': 'Zataženo',
+	'Fog': 'Mlha',
+	'Depositing rime fog': 'Mrznoucí mlha',
+	'Light Drizzle': 'Slabé mrholení',
+	'Moderate Drizzle': 'Mírné mrholení',
+	'Dense Drizzle': 'Husté mrholení',
+	'Light Freezing Drizzle': 'Sl. mrz. mrh.',
+	'Dense Freezing Drizzle': 'Sil. mrz. mrh.',
+	'Slight Rain': 'Slabý déšť',
+	'Moderate Rain': 'Mírný déšť',
+	'Heavy Rain': 'Silný déšť',
+	'Light Freezing Rain': 'Slabý mrz. déšť',
+	'Heavy Freezing Rain': 'Silný mrz. déšť',
+	'Slight Snow fall': 'Slabé sněžení',
+	'Moderate Snow fall': 'Mírné sněžení',
+	'Heavy Snow fall': 'Silné sněžení',
+	'Snow grains': 'Sněhová zrna',
+	'Slight Rain showers': 'Slabé přeháňky',
+	'Moderate Rain showers': 'Mírné přeháňky',
+	'Violent Rain showers': 'Silné přeháňky',
+	'Slight Snow showers': 'Sl. sněh. přeh.',
+	'Heavy Snow Showers': 'Sil sněh. přeh.',
+	'Thunderstorm': 'Bouřka',
+	'Thunderstorm with slight hail': 'Bouřka, sl. kr.',
+	'Thunderstorm with heavy hail': 'Bouřka, sil. kr.'
+};
+
+const directionTranslations = {
+	'N': 'S', 'NNE': 'SSV', 'NE': 'SV', 'ENE': 'VSV', 'E': 'V', 'ESE': 'VJV', 'SE': 'JV', 'SSE': 'JJV',
+	'S': 'J', 'SSW': 'JJZ', 'SW': 'JZ', 'WSW': 'ZJZ', 'W': 'Z', 'WNW': 'ZSZ', 'NW': 'SZ', 'NNW': 'SSZ'
+};
+
 // the "screens" are stored in an array for easy addition and removal
 const screens = [
 	// station name
 	(data) => {
-		let sanitizedText = 'Conditions at ';
+		let sanitizedText = 'Podmínky - ';
 		// Typically an airport with "International" at the second position
 		if (data.city.split(' ').length > 2 && data.city.split(' ')[1].toLowerCase() === 'international') {
-			sanitizedText += `${data.city.split(' ')[0]} Intl. ${data.city.split(' ')[2]} `;
+			sanitizedText += `${data.city.split(' ')[0]} Mezinár. ${data.city.split(' ')[2]} `;
 		// or a very long city name...this will
 		// truncate very long airports too, like
 		// "John F. Kennedy International Airport"
@@ -71,28 +107,34 @@ const screens = [
 	},
 
 	// condition
-	(data) => `Condition: ${getConditionText(data.TextConditions)}`,
+	(data) => {
+		const engCond = getConditionText(data.TextConditions);
+		const translated = conditionTranslations[engCond] || engCond;
+		return `Stav: ${translated}`;
+	},
 
 	// temperature
 	(data) => {
-		const text = `Temp: ${data.Temperature}${degree}${data.TemperatureUnit}`;
+		const text = `Teplota: ${data.Temperature}${degree}${data.TemperatureUnit}`;
 		return text;
 	},
 
 	// humidity
-	(data) => `Humidity: ${data.Humidity}%   Dewpoint: ${data.DewPoint}${degree}${data.TemperatureUnit}`,
+	(data) => `Vlhkost: ${data.Humidity}%   Rosný bod: ${data.DewPoint}${degree}${data.TemperatureUnit}`,
 
 	// barometric pressure
-	(data) => `Barometric Pressure: ${data.Pressure} ${data.PressureUnit}`,
+	(data) => `Tlak: ${data.Pressure} ${data.PressureUnit}`,
 
 	// wind
 	(data) => {
+		const engDir = data.WindDirection;
+		const windDir = directionTranslations[engDir] || engDir;
 		let text = data.WindSpeed > 0
-			? `Wind: ${data.WindDirection} ${data.WindSpeed} ${data.WindUnit}`
-			: 'Wind: Calm';
+			? `Vítr: ${windDir} ${data.WindSpeed} ${data.WindUnit}`
+			: 'Vítr: Klid';
 
 		if (data.WindGust > 0) {
-			text += `   Gusts to ${data.WindGust}`;
+			text += `   Nárazy do ${data.WindGust}`;
 		}
 		return text;
 	},
@@ -100,7 +142,7 @@ const screens = [
 	// visibility
 	(data) => {
 		const distance = `${data.Ceiling} ${data.CeilingUnit}`;
-		return `Visib: ${data.Visibility} ${data.VisibilityUnit}   Ceiling: ${data.Ceiling === 0 ? 'Unlimited' : distance}`;
+		return `Viditelnost: ${data.Visibility} ${data.VisibilityUnit}   Zákl.obl.: ${data.Ceiling === 0 ? 'Neomezeno' : distance}`;
 	},
 ];
 

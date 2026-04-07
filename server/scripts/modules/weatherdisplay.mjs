@@ -227,7 +227,10 @@ class WeatherDisplay {
 			second: '2-digit',
 			hourCycle: ConversionHelpers.getHoursFormat() === '12-hour' ? 'h12' : 'h23',
 		}).padStart(11, ' ');
-		const date = now.toFormat(' ccc LLL ') + now.day.toString().padStart(2, ' ');
+
+		const czechDaysShort = ['PO', 'ÚT', 'ST', 'ČT', 'PÁ', 'SO', 'NE'];
+		const czechMonthsShort = ['LED', 'ÚNO', 'BŘE', 'DUB', 'KVĚ', 'ČVN', 'ČVC', 'SRP', 'ZÁŘ', 'ŘÍJ', 'LIS', 'PRO'];
+		const date = ` ${czechDaysShort[now.weekday - 1]} ${now.day}. ${czechMonthsShort[now.month - 1]} `;
 
 		const dateElem = this.elem.querySelector('.date-time.date');
 		const timeElem = this.elem.querySelector('.date-time.time');

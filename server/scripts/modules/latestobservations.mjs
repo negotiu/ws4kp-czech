@@ -9,7 +9,7 @@ import { registerDisplay } from './navigation.mjs';
 
 class LatestObservations extends WeatherDisplay {
 	constructor(navId, elemId) {
-		super(navId, elemId, 'Latest Observations', false);
+		super(navId, elemId, 'Nejnovější pozorování', false);
 
 		// constants
 		this.MaximumRegionalStations = 7;
@@ -69,7 +69,12 @@ class LatestObservations extends WeatherDisplay {
 		this.elem.querySelector('.column-headers .temp.metric').classList.remove('show');
 
 		const lines = sortedConditions.map((condition) => {
-			const windDirection = directionToNSEW(condition.windDirection.value);
+			const engDir = directionToNSEW(condition.windDirection.value);
+			const directionTranslations = {
+				'N': 'S', 'NNE': 'SSV', 'NE': 'SV', 'ENE': 'VSV', 'E': 'V', 'ESE': 'VJV', 'SE': 'JV', 'SSE': 'JJV',
+				'S': 'J', 'SSW': 'JJZ', 'SW': 'JZ', 'WSW': 'ZJZ', 'W': 'Z', 'WNW': 'ZSZ', 'NW': 'SZ', 'NNW': 'SSZ'
+			};
+			const windDirection = directionTranslations[engDir] || engDir;
 
 			const	Temperature = Math.round(celsiusToFahrenheit(condition.temperature.value));
 			const WindSpeed = Math.round(kphToMph(condition.windSpeed.value));
@@ -85,7 +90,7 @@ class LatestObservations extends WeatherDisplay {
 			} else if (WindSpeed === 'NA') {
 				fill.wind = 'NA';
 			} else {
-				fill.wind = 'Calm';
+				fill.wind = 'Klid';
 			}
 
 			return this.fillTemplate('observation-row', fill);
@@ -99,20 +104,36 @@ class LatestObservations extends WeatherDisplay {
 	}
 }
 const shortenCurrentConditions = (_condition) => {
-	let condition = _condition;
-	condition = condition.replace(/Light/, 'L');
-	condition = condition.replace(/Heavy/, 'H');
-	condition = condition.replace(/Partly/, 'P');
-	condition = condition.replace(/Mostly/, 'M');
-	condition = condition.replace(/Few/, 'F');
-	condition = condition.replace(/Thunderstorm/, 'T\'storm');
+	const conditionTranslations = {
+		'Clear': 'Jasno',
+		'Mostly Clear': 'Skoro jas',
+		'Partly Cloudy': 'Polojasno',
+		'Mostly Cloudy': 'Větš. obl',
+		'Cloudy': 'Zataženo',
+		'Overcast': 'Zataženo',
+		'Fog': 'Mlha',
+		'Light Rain': 'Sl. déšť',
+		'Rain': 'Déšť',
+		'Heavy Rain': 'Sil. déšť',
+		'Light Snow': 'Sl. sněž.',
+		'Snow': 'Sněžení',
+		'Heavy Snow': 'Sil. sněž',
+		'Thunderstorm': 'Bouřka'
+	};
+	let condition = conditionTranslations[_condition] || _condition;
+	condition = condition.replace(/Light/, 'Sl.');
+	condition = condition.replace(/Heavy/, 'Sil.');
+	condition = condition.replace(/Partly/, 'Polo');
+	condition = condition.replace(/Mostly/, 'Větš.');
+	condition = condition.replace(/Few/, 'Skoro');
+	condition = condition.replace(/Thunderstorm/, 'Bouř.');
 	condition = condition.replace(/ in /, '');
 	condition = condition.replace(/Vicinity/, '');
-	condition = condition.replace(/ and /, ' ');
-	condition = condition.replace(/Freezing Rain/, 'Frz Rn');
-	condition = condition.replace(/Freezing/, 'Frz');
+	condition = condition.replace(/ and /, ' a ');
+	condition = condition.replace(/Freezing Rain/, 'Mrz.déšť');
+	condition = condition.replace(/Freezing/, 'Mrz.');
 	condition = condition.replace(/Unknown Precip/, '');
-	condition = condition.replace(/L Snow Fog/, 'L Snw/Fog');
+	condition = condition.replace(/L Snow Fog/, 'Sl.Sněh/Mlh');
 	condition = condition.replace(/ with /, '/');
 	return condition;
 };

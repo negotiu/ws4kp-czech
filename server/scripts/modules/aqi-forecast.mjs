@@ -9,7 +9,7 @@ import ExperimentalFeatures from './utils/experimental.mjs';
 
 class AirQualityForecast extends WeatherDisplay {
 	constructor(navId, elemId, defaultActive) {
-		super(navId, elemId, 'Air Quality', defaultActive);
+		super(navId, elemId, 'Kvalita ovzduší', defaultActive);
 		this.backgroundImage = loadImg('images/Background12.png');
 		this.nearbyCities = [];
 	}
@@ -252,7 +252,7 @@ const aggregateHourlyData = (hourlyDataArray, startingPosition, endingPosition) 
 
 const parseAirQualityData = (_weatherParameters, aqiData, coreData) => {
 	const todayDate = aqiData.hourly.time?.[0];
-	const todayName = todayDate ? new Date(todayDate).toLocaleDateString(undefined, { weekday: 'long', timeZone: _weatherParameters.timezone }) : 'Today';
+	const todayName = todayDate ? new Date(todayDate).toLocaleDateString('cs-CZ', { weekday: 'long', timeZone: _weatherParameters.timezone }) : 'Dnes';
 
 	const today = {
 		text: todayName,

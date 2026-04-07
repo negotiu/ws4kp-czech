@@ -14,7 +14,7 @@ import ConversionHelpers from './utils/conversionHelpers.mjs';
 class Hourly extends WeatherDisplay {
 	constructor(navId, elemId, defaultActive) {
 		// special height and width for scrolling
-		super(navId, elemId, 'Hourly Forecast', defaultActive);
+		super(navId, elemId, 'Hodinová předpověď', defaultActive);
 
 		// set up the timing
 		this.timing.baseDelay = 20;
@@ -50,13 +50,19 @@ class Hourly extends WeatherDisplay {
 		list.innerHTML = '';
 
 		const startingHour = DateTime.local();
+		const czechDaysShort = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
+		const directionTranslations = {
+			'N': 'S', 'NNE': 'SSV', 'NE': 'SV', 'ENE': 'VSV', 'E': 'V', 'ESE': 'VJV', 'SE': 'JV', 'SSE': 'JJV',
+			'S': 'J', 'SSW': 'JJZ', 'SW': 'JZ', 'WSW': 'ZJZ', 'W': 'Z', 'WNW': 'ZSZ', 'NW': 'SZ', 'NNW': 'SSZ'
+		};
 
 		const lines = this.data.map((data, index) => {
 			const fillValues = {};
 
 			// hour
 			const hour = startingHour.plus({ hours: index });
-			const formattedHour = hour.toLocaleString({ weekday: 'short', hour: 'numeric' });
+			const hourFormat = ConversionHelpers.getHoursFormat() === '12-hour' ? 'h a' : 'H:00';
+			const formattedHour = `${czechDaysShort[hour.weekday - 1]} ${hour.toFormat(hourFormat)}`;
 			fillValues.hour = formattedHour;
 
 			// temperatures, convert to strings with no decimal
@@ -68,10 +74,11 @@ class Hourly extends WeatherDisplay {
 			if (temperature !== feelsLike) fillValues.like = feelsLike;
 
 			// wind
-			let wind = 'Calm';
+			let wind = 'Klid';
 			if (data.windSpeed > 0) {
 				const windSpeed = Math.round(ConversionHelpers.convertWindUnits(data.windSpeed)).toString();
-				const windDirection = directionToNSEW(data.windDirection);
+				const engDir = directionToNSEW(data.windDirection);
+				const windDirection = directionTranslations[engDir] || engDir;
 				wind = windDirection + (Array(6 - windDirection.length - windSpeed.length).join(' ')) + windSpeed;
 			}
 			fillValues.wind = wind;

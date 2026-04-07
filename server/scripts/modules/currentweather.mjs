@@ -11,7 +11,7 @@ import ConversionHelpers from './utils/conversionHelpers.mjs';
 
 class CurrentWeather extends WeatherDisplay {
 	constructor(navId, elemId) {
-		super(navId, elemId, 'Current Conditions', true);
+		super(navId, elemId, 'Aktuální podmínky', true);
 		// pre-load background image (returns promise)
 		this.backgroundImage = loadImg('images/BackGround1_1.png');
 	}
@@ -34,22 +34,68 @@ class CurrentWeather extends WeatherDisplay {
 	async drawCanvas() {
 		super.drawCanvas();
 
+		const directionTranslations = {
+			'N': 'S', 'NNE': 'SSV', 'NE': 'SV', 'ENE': 'VSV', 'E': 'V', 'ESE': 'VJV', 'SE': 'JV', 'SSE': 'JJV',
+			'S': 'J', 'SSW': 'JJZ', 'SW': 'JZ', 'WSW': 'ZJZ', 'W': 'Z', 'WNW': 'ZSZ', 'NW': 'SZ', 'NNW': 'SSZ'
+		};
+
+		const conditionTranslations = {
+			'Clear sky': 'Jasno',
+			'Mainly clear': 'Většinou jasno',
+			'Partly cloudy': 'Polojasno',
+			'Overcast': 'Zataženo',
+			'Fog': 'Mlha',
+			'Depositing rime fog': 'Mrznoucí mlha',
+			'Light Drizzle': 'Slabé mrholení',
+			'Moderate Drizzle': 'Mírné mrholení',
+			'Dense Drizzle': 'Husté mrholení',
+			'Light Freezing Drizzle': 'Sl. mrz. mrh.',
+			'Dense Freezing Drizzle': 'Sil. mrz. mrh.',
+			'Slight Rain': 'Slabý déšť',
+			'Moderate Rain': 'Mírný déšť',
+			'Heavy Rain': 'Silný déšť',
+			'Light Freezing Rain': 'Slabý mrz. déšť',
+			'Heavy Freezing Rain': 'Silný mrz. déšť',
+			'Slight Snow fall': 'Slabé sněžení',
+			'Moderate Snow fall': 'Mírné sněžení',
+			'Heavy Snow fall': 'Silné sněžení',
+			'Snow grains': 'Sněhová zrna',
+			'Slight Rain showers': 'Slabé přeháňky',
+			'Moderate Rain showers': 'Mírné přeháňky',
+			'Violent Rain showers': 'Silné přeháňky',
+			'Slight Snow showers': 'Sl. sněh. přeh.',
+			'Heavy Snow Showers': 'Sil sněh. přeh.',
+			'Thunderstorm': 'Bouřka',
+			'Thunderstorm with slight hail': 'Bouřka, sl. kr.',
+			'Thunderstorm with heavy hail': 'Bouřka, sil. kr.'
+		};
+
 		let condition = getConditionText(this.data.TextConditions);
+		const iconImage = getWeatherIconFromIconLink(condition, this.data.timeZone);
+
+		condition = conditionTranslations[condition] || condition;
+
 		if (condition.length > 15) {
 			condition = shortConditions(condition);
 		}
 
-		const iconImage = getWeatherIconFromIconLink(condition, this.data.timeZone);
 		const pressureArrow = getPressureArrow(this.data);
+
+		let wind = 'Klid';
+		if (this.data.WindSpeed > 0) {
+			const engDir = this.data.WindDirection;
+			const windDirection = directionTranslations[engDir] || engDir;
+			wind = windDirection.padEnd(3, ' ') + this.data.WindSpeed.toString().padStart(3, ' ');
+		}
 
 		const fill = {
 			temp: this.data.Temperature + String.fromCharCode(176),
 			condition,
-			wind: this.data.WindDirection.padEnd(3, '') + this.data.WindSpeed.toString().padStart(3, ' '),
+			wind,
 			location: this.data.city,
 			humidity: `${this.data.Humidity}%`,
 			dewpoint: this.data.DewPoint + String.fromCharCode(176),
-			ceiling: (this.data.Ceiling === 0 ? 'Unlimited' : this.data.Ceiling + this.data.CeilingUnit),
+			ceiling: (this.data.Ceiling === 0 ? 'Neomezeno' : this.data.Ceiling + this.data.CeilingUnit),
 			visibility: this.data.Visibility + this.data.VisibilityUnit,
 			pressure: `${this.data.Pressure}${this.data.PressureUnit}${pressureArrow}`,
 			cloud: this.data.CloudCover ? `${this.data.CloudCover}%` : 'N/A',
@@ -57,7 +103,7 @@ class CurrentWeather extends WeatherDisplay {
 			icon: { type: 'img', src: iconImage },
 		};
 
-		if (this.data.WindGust) fill['wind-gusts'] = `Gusts to ${this.data.WindGust}`;
+		if (this.data.WindGust) fill['wind-gusts'] = `Nárazy do ${this.data.WindGust}`;
 
 		const area = this.elem.querySelector('.main');
 

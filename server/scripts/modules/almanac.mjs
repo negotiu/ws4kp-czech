@@ -7,7 +7,7 @@ import { registerDisplay } from './navigation.mjs';
 
 class Almanac extends WeatherDisplay {
 	constructor(navId, elemId) {
-		super(navId, elemId, 'Almanac', true);
+		super(navId, elemId, 'Almanach', true);
 
 		// pre-load background images (returns promises)
 		this.backgroundImage0 = loadImg('images/BackGround3_1.png');
@@ -120,21 +120,31 @@ class Almanac extends WeatherDisplay {
 		const Today = DateTime.local();
 		const Tomorrow = Today.plus({ days: 1 });
 
+		const czechDays = ['Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek', 'Sobota', 'Neděle'];
+		const czechMonths = ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'];
+
 		// sun and moon data
-		this.elem.querySelector('.day-1').innerHTML = Today.toLocaleString({ weekday: 'long' });
-		this.elem.querySelector('.day-2').innerHTML = Tomorrow.toLocaleString({ weekday: 'long' });
-		this.elem.querySelector('.rise-1').innerHTML = DateTime.fromJSDate(info.sun[0].sunrise).toLocaleString(DateTime.TIME_SIMPLE).toLowerCase();
-		this.elem.querySelector('.rise-2').innerHTML = DateTime.fromJSDate(info.sun[1].sunrise).toLocaleString(DateTime.TIME_SIMPLE).toLowerCase();
-		this.elem.querySelector('.set-1').innerHTML = DateTime.fromJSDate(info.sun[0].sunset).toLocaleString(DateTime.TIME_SIMPLE).toLowerCase();
-		this.elem.querySelector('.set-2').innerHTML = DateTime.fromJSDate(info.sun[1].sunset).toLocaleString(DateTime.TIME_SIMPLE).toLowerCase();
+		this.elem.querySelector('.day-1').innerHTML = czechDays[Today.weekday - 1];
+		this.elem.querySelector('.day-2').innerHTML = czechDays[Tomorrow.weekday - 1];
+		this.elem.querySelector('.rise-1').innerHTML = DateTime.fromJSDate(info.sun[0].sunrise).toFormat('H:mm');
+		this.elem.querySelector('.rise-2').innerHTML = DateTime.fromJSDate(info.sun[1].sunrise).toFormat('H:mm');
+		this.elem.querySelector('.set-1').innerHTML = DateTime.fromJSDate(info.sun[0].sunset).toFormat('H:mm');
+		this.elem.querySelector('.set-2').innerHTML = DateTime.fromJSDate(info.sun[1].sunset).toFormat('H:mm');
+
+		const phaseTranslations = {
+			'Full': 'Úplněk',
+			'Last': 'Poslední čtvrť',
+			'New': 'Nov',
+			'First': 'První čtvrť'
+		};
 
 		const days = info.moon.map((MoonPhase) => {
 			const fill = {};
 
-			const date = MoonPhase.date.toLocaleString({ month: 'short', day: 'numeric' });
+			const date = `${MoonPhase.date.day}. ${czechMonths[MoonPhase.date.month - 1]}.`;
 
 			fill.date = date;
-			fill.type = MoonPhase.phase;
+			fill.type = phaseTranslations[MoonPhase.phase] || MoonPhase.phase;
 			fill.icon = { type: 'img', src: imageName(MoonPhase.phase) };
 
 			return this.fillTemplate('day', fill);

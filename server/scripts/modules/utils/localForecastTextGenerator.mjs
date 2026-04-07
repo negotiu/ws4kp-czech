@@ -7,26 +7,26 @@ function generateLocalForecast(dateStamp, hourlyData) {
 	const NIGHT_HOURS = [...Array(6).keys()].map((h) => h + 18).concat([...Array(6).keys()]); // 6 PM - 6 AM
 
 	const phraseVariations = {
-		'CHANCE OF PRECIPITATION': ['PRECIPITATION PROBABILITY', 'EXPECTED PRECIPITATION LIKELIHOOD', 'CHANCE OF SHOWERS', 'PRECIPITATION POSSIBLE', 'LIKELIHOOD OF RAIN', 'SHOWERS EXPECTED', 'PRECIPITATION LIKELY'],
-		WIND: ['WINDS FROM THE', 'EXPECT WINDS COMING FROM', 'BREEZES BLOWING FROM', 'BREEZES FROM THE', 'GUSTS COMING FROM THE', 'WINDS BLOWING IN FROM THE'],
-		CLOUDY: ['CLOUD COVER', 'SKIES WILL BE MOSTLY CLOUDY', 'OVERCAST CONDITIONS EXPECTED', 'PARTLY CLOUDY SKIES', 'MOSTLY CLOUDY WITH INTERVALS OF SUN', 'CLOUDS DOMINATING THE SKY'],
-		CLEAR: ['MOSTLY CLEAR SKIES', 'FEW CLOUDS EXPECTED', 'SKIES REMAINING CLEAR', 'CLEAR AND SUNNY', 'BRIGHT SKIES EXPECTED', 'VERY LITTLE CLOUD COVER'],
-		'SNOW SHOWERS': ['FLURRIES LIKELY', 'SNOWFALL EXPECTED', 'LIGHT SNOW POSSIBLE'],
+		'CHANCE OF PRECIPITATION': ['PRAVDĚPODOBNOST SRÁŽEK', 'OČEKÁVANÁ PRAVDĚPODOBNOST SRÁŽEK', 'ŠANCE NA PŘEHÁŇKY', 'MOŽNOST SRÁŽEK', 'PRAVDĚPODOBNOST DEŠTĚ', 'OČEKÁVAJÍ SE PŘEHÁŇKY', 'SRÁŽKY JSOU PRAVDĚPODOBNÉ'],
+		WIND: ['VÍTR OD', 'OČEKÁVEJTE VÍTR OD', 'VÍTR POVANE OD', 'MÍRNÝ VÍTR OD', 'NÁRAZY VĚTRU OD', 'VÍTR SE OČEKÁVÁ OD'],
+		CLOUDY: ['OBLAČNO', 'OBLOHA BUDE VĚTŠINOU ZATAŽENÁ', 'OČEKÁVÁ SE ZATAŽENO', 'POLOJASNO', 'VĚTŠINOU OBLAČNO S INTERVALY SLUNCE', 'OBLAKA OVLÁDNOU OBLOHU'],
+		CLEAR: ['VĚTŠINOU JASNÁ OBLOHA', 'OČEKÁVÁ SE MÁLO OBLAČNOSTI', 'OBLOHA ZŮSTANE JASNÁ', 'JASNO A SLUNEČNO', 'OČEKÁVÁ SE JASNÁ OBLOHA', 'VELMI MÁLO OBLAČNOSTI'],
+		'SNOW SHOWERS': ['PRAVDĚPODOBNÉ SNĚHOVÉ PŘEHÁŇKY', 'OČEKÁVÁ SE SNĚŽENÍ', 'MOŽNOST SLABÉHO SNĚŽENÍ'],
 	};
 
 	const forecastTemplates = [
-		'{period}...  {cloudCover}, WITH A {tempLabel} AROUND {temp}. {windInfo}. {precipChance}',
-		'{period}... {cloudCover}, {tempLabel} NEAR {temp}. {windInfo}. {precipChance}',
-		'{period}... {cloudCover}, {tempLabel} CLOSE TO {temp}. {windInfo}. {precipChance}',
-		'{cloudCover} THIS {period}, WITH {tempLabel} AROUND {temp}. {windInfo}. {precipChance}',
-		'{period} FORECAST: {cloudCover}, {tempLabel} {temp}. {windInfo}. {precipChance}',
-		'{period} OUTLOOK: {cloudCover}, EXPECT A {tempLabel} AROUND {temp}. {windInfo}. {precipChance}',
-		'{period} WEATHER: {cloudCover}, {tempLabel} AT {temp}. {windInfo}. {precipChance}',
-		'{period}... {cloudCover}, {tempLabel} CLOSE TO {temp}. {windInfo}. {precipChance}',
-		'{period}... A {tempLabel} NEAR {temp}. {cloudCover}. {windInfo}. {precipChance}',
-		'{period}... {cloudCover}. {windInfo}. {precipChance} {tempLabel} AROUND {temp}.',
-		'{period} FORECAST: {cloudCover}, WITH TEMPERATURES AROUND {temp}. {windInfo}. {precipChance}',
-		'{period} WEATHER OUTLOOK: {cloudCover}. {windInfo}. {precipChance} EXPECT TEMPERATURES AROUND {temp}.',
+		'{period}...  {cloudCover}, S {tempLabel} KOLEM {temp}. {windInfo}. {precipChance}',
+		'{period}... {cloudCover}, {tempLabel} BLÍZKO {temp}. {windInfo}. {precipChance}',
+		'{period}... {cloudCover}, {tempLabel} KOLEM {temp}. {windInfo}. {precipChance}',
+		'{cloudCover} PRO TOTO {period}, {tempLabel} KOLEM {temp}. {windInfo}. {precipChance}',
+		'{period} PŘEDPOVĚĎ: {cloudCover}, {tempLabel} {temp}. {windInfo}. {precipChance}',
+		'{period} VÝHLED: {cloudCover}, OČEKÁVEJTE {tempLabel} KOLEM {temp}. {windInfo}. {precipChance}',
+		'{period} POČASÍ: {cloudCover}, {tempLabel} NA {temp}. {windInfo}. {precipChance}',
+		'{period}... {cloudCover}, {tempLabel} BLÍZKO {temp}. {windInfo}. {precipChance}',
+		'{period}... {tempLabel} KOLEM {temp}. {cloudCover}. {windInfo}. {precipChance}',
+		'{period}... {cloudCover}. {windInfo}. {precipChance} {tempLabel} KOLEM {temp}.',
+		'{period} PŘEDPOVĚĎ: {cloudCover}, S TEPLOTAMI KOLEM {temp}. {windInfo}. {precipChance}',
+		'{period} VÝHLED POČASÍ: {cloudCover}. {windInfo}. {precipChance} OČEKÁVEJTE TEPLOTY KOLEM {temp}.',
 	];
 
 	function getMostFrequent(arr) {
@@ -41,21 +41,29 @@ function generateLocalForecast(dateStamp, hourlyData) {
 
 		const temps = periodData.map((entry) => ConversionHelpers.convertTemperatureUnits(Math.round(entry.temperature_2m)));
 		const temp = period === 'MORNING' ? Math.max(...temps) : Math.min(...temps);
-		const tempLabel = period === 'MORNING' ? 'HIGH' : 'LOW';
+		const tempLabel = period === 'MORNING' ? 'MAX' : 'MIN';
+		const periodLabel = period === 'MORNING' ? 'RÁNO' : 'NOC';
+
+		const directionTranslations = {
+			'N': 'S', 'NNE': 'SSV', 'NE': 'SV', 'ENE': 'VSV', 'E': 'V', 'ESE': 'VJV', 'SE': 'JV', 'SSE': 'JJV',
+			'S': 'J', 'SSW': 'JJZ', 'SW': 'JZ', 'WSW': 'ZJZ', 'W': 'Z', 'WNW': 'ZSZ', 'NW': 'SZ', 'NNW': 'SSZ'
+		};
 
 		const windSpeeds = periodData.map((entry) => ConversionHelpers.convertWindUnits(Math.round(entry.wind_speed_10m)));
 		const windDirs = periodData.map((entry) => entry.wind_direction_10m);
-		const windInfo = `${directionToNSEW(getMostFrequent(windDirs))} WIND ${Math.min(...windSpeeds)} TO ${Math.max(...windSpeeds)} ${ConversionHelpers.getWindUnitText().toUpperCase()}`;
+		const engDir = directionToNSEW(getMostFrequent(windDirs));
+		const windDir = directionTranslations[engDir] || engDir;
+		const windInfo = `VÍTR ${windDir} ${Math.min(...windSpeeds)} AŽ ${Math.max(...windSpeeds)} ${ConversionHelpers.getWindUnitText().toUpperCase()}`;
 
 		const precipProbs = periodData.map((entry) => entry.precipitation_probability);
 		const maxPrecip = Math.max(...precipProbs);
-		let precipChance = 'PRECIPITATION NOT EXPECTED.';
+		let precipChance = 'SRÁŽKY SE NEOČEKÁVAJÍ.';
 
 		if (maxPrecip >= 30) {
 			const peakHour = periodData.find((entry) => entry.precipitation_probability === maxPrecip)?.time;
 			const hour = new Date(peakHour).getHours();
-			const precipTime = `AFTER ${hour % 12 || 12} ${hour < 12 ? 'AM' : 'PM'}`;
-			precipChance = `${phraseVariations['CHANCE OF PRECIPITATION'][Math.floor(Math.random() * phraseVariations['CHANCE OF PRECIPITATION'].length)]} ${precipTime}. CHANCE IS ${maxPrecip}%.`;
+			const precipTime = `PO ${hour}. HODINĚ`;
+			precipChance = `${phraseVariations['CHANCE OF PRECIPITATION'][Math.floor(Math.random() * phraseVariations['CHANCE OF PRECIPITATION'].length)]} ${precipTime}. ŠANCE JE ${maxPrecip}%.`;
 		}
 
 		const cloudCover = periodData.map((entry) => entry.cloud_cover);
@@ -73,7 +81,7 @@ function generateLocalForecast(dateStamp, hourlyData) {
 		}
 
 		const forecastText = forecastTemplates[Math.floor(Math.random() * forecastTemplates.length)]
-			.replace('{period}', period)
+			.replace('{period}', periodLabel)
 			.replace('{cloudCover}', cloudCoverText)
 			.replace('{tempLabel}', tempLabel)
 			.replace('{temp}', temp)
@@ -94,7 +102,7 @@ function generateLocalForecast(dateStamp, hourlyData) {
 
 	// Generate forecast for the provided date
 	const dayDate = new Date(dateStamp);
-	const dayStr = dayDate.toLocaleDateString('en-US', { weekday: 'long' }).toUpperCase();
+	const dayStr = dayDate.toLocaleDateString('cs-CZ', { weekday: 'long' }).toUpperCase();
 
 	const dailyData = hourlyData.filter((entry) => new Date(entry.time).toDateString() === dayDate.toDateString());
 

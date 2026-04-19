@@ -13,6 +13,9 @@
 
 This project is a fork of [`ws4kp-international`](https://github.com/mwood77/ws4kp-international) by [@mwood77](https://github.com/mwood77) with has been translated. I have edited the original fonts to work with czech alphabet using [FontForge](https://github.com/fontforge/fontforge)
 
+## Hazards
+
+Hazards now go through [`Meteogate`](https://meteogate.eu/) API. So now they work.
 
 ### Original
 

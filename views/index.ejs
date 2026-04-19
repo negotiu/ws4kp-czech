@@ -5,7 +5,8 @@
 <head>
   <meta charset="utf-8" />
   <title>WeatherStar 4000+ International</title>
-  <meta name="description" content="Web based WeatherStar 4000 simulator that reports current and forecast weather conditions plus a few extras!" />
+  <meta name="description"
+    content="Web based WeatherStar 4000 simulator that reports current and forecast weather conditions plus a few extras!" />
   <meta name="keywords" content="WeatherStar 4000+" />
   <meta name="author" content="Michael Wood" />
   <meta name="application-name" content="WeatherStar 4000+ International" />
@@ -15,59 +16,57 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="images/Logo192.png" />
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  
+
   <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-  crossorigin=""/>
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin="">
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="">
       window.leaflet = L;
-  </script>
+    </script>
 
   <% if (production) { %>
-  <link rel="stylesheet" type="text/css" href="resources/ws.min.css?_=<%=production%>" />
-  <script type="text/javascript" src="resources/data.min.js?_=<%=production%>"></script>
-  <script type="text/javascript" src="resources/vendor.min.js?_=<%=production%>"></script>
-  <script type="text/javascript" src="resources/ws.min.js?_=<%=production%>"></script>
-  <!-- <script type="text/javascript" src="scripts/custom.js?_=<%=production%>"></script> -->
-  <% } else { %>
-  <link rel="stylesheet" type="text/css" href="styles/main.css" />
-  <script type="text/javascript" src="scripts/vendor/auto/jquery.js"></script>
-  <script type="text/javascript" src="scripts/vendor/jquery.autocomplete.min.js"></script>
-  <script type="text/javascript" src="scripts/vendor/auto/nosleep.js"></script>
-  <script type="text/javascript" src="scripts/vendor/auto/swiped-events.js"></script>
-  <script type="text/javascript" src="scripts/vendor/auto/suncalc.js"></script>
-  <script type="module" src="scripts/modules/hazards.mjs"></script>
-  <script type="module" src="scripts/modules/currentweatherscroll.mjs"></script>
-  <script type="module" src="scripts/modules/currentweather.mjs"></script>
-  <script type="module" src="scripts/modules/customweatherstation.mjs"></script>
-  <script type="module" src="scripts/modules/almanac.mjs"></script>
-  <script type="module" src="scripts/modules/icons.mjs"></script>
-  <script type="module" src="scripts/modules/extendedforecast.mjs"></script>
-  <script type="module" src="scripts/modules/hourly-graph.mjs"></script>
-  <script type="module" src="scripts/modules/marine-forecast.mjs"></script>
-  <script type="module" src="scripts/modules/aqi-forecast.mjs"></script>
-  <script type="module" src="scripts/modules/hourly.mjs"></script>
-  <script type="module" src="scripts/modules/latestobservations.mjs"></script>
-  <script type="module" src="scripts/modules/localforecast.mjs"></script>
-  <script type="module" src="scripts/modules/radar.mjs"></script>
-  <script type="module" src="scripts/modules/regionalforecast.mjs"></script>
-  <script type="module" src="scripts/modules/travelforecast.mjs"></script>
-  <script type="module" src="scripts/modules/progress.mjs"></script>
-  <script type="module" src="scripts/modules/radar.mjs"></script>
-  <script type="module" src="scripts/modules/settings.mjs"></script>
-	<script type="module" src="scripts/index.mjs"></script>
-	<!-- <script type="text/javascript" src="scripts/custom.js"></script> -->
-  <!-- data -->
-  <script type="text/javascript" src="scripts/data/travelcities.js"></script>
-  <script type="text/javascript" src="scripts/data/regionalcities.js"></script>
-  <script type="text/javascript" src="scripts/data/stations.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/ws.min.css?_=<%=production%>" />
+    <script type="text/javascript" src="resources/data.min.js?_=<%=production%>"></script>
+    <script type="text/javascript" src="resources/vendor.min.js?_=<%=production%>"></script>
+    <script type="text/javascript" src="resources/ws.min.js?_=<%=production%>"></script>
+    <!-- <script type="text/javascript" src="scripts/custom.js?_=<%=production%>"></script> -->
+    <% } else { %>
+      <link rel="stylesheet" type="text/css" href="styles/main.css" />
+      <script type="text/javascript" src="scripts/vendor/auto/jquery.js"></script>
+      <script type="text/javascript" src="scripts/vendor/jquery.autocomplete.min.js"></script>
+      <script type="text/javascript" src="scripts/vendor/auto/nosleep.js"></script>
+      <script type="text/javascript" src="scripts/vendor/auto/swiped-events.js"></script>
+      <script type="text/javascript" src="scripts/vendor/auto/suncalc.js"></script>
+      <script type="module" src="scripts/modules/hazards.mjs"></script>
+      <script type="module" src="scripts/modules/currentweatherscroll.mjs"></script>
+      <script type="module" src="scripts/modules/currentweather.mjs"></script>
+      <script type="module" src="scripts/modules/customweatherstation.mjs"></script>
+      <script type="module" src="scripts/modules/almanac.mjs"></script>
+      <script type="module" src="scripts/modules/icons.mjs"></script>
+      <script type="module" src="scripts/modules/extendedforecast.mjs"></script>
+      <script type="module" src="scripts/modules/hourly-graph.mjs"></script>
+      <script type="module" src="scripts/modules/marine-forecast.mjs"></script>
+      <script type="module" src="scripts/modules/aqi-forecast.mjs"></script>
+      <script type="module" src="scripts/modules/hourly.mjs"></script>
+      <script type="module" src="scripts/modules/latestobservations.mjs"></script>
+      <script type="module" src="scripts/modules/localforecast.mjs"></script>
+      <script type="module" src="scripts/modules/radar.mjs"></script>
+      <script type="module" src="scripts/modules/regionalforecast.mjs"></script>
+      <script type="module" src="scripts/modules/travelforecast.mjs"></script>
+      <script type="module" src="scripts/modules/progress.mjs"></script>
+      <script type="module" src="scripts/modules/radar.mjs"></script>
+      <script type="module" src="scripts/modules/settings.mjs"></script>
+      <script type="module" src="scripts/index.mjs"></script>
+      <!-- <script type="text/javascript" src="scripts/custom.js"></script> -->
+      <!-- data -->
+      <script type="text/javascript" src="scripts/data/travelcities.js"></script>
+      <script type="text/javascript" src="scripts/data/regionalcities.js"></script>
+      <script type="text/javascript" src="scripts/data/stations.js"></script>
 
-  <!-- <script type="text/javascript" src="scripts/custom.js"></script> -->
+      <!-- <script type="text/javascript" src="scripts/custom.js"></script> -->
 
-  <% } %>
+      <% } %>
 
 </head>
 
@@ -75,14 +74,15 @@
 
 
   <div id="divQuery">
-		<input id="txtAddress" type="text" value="" placeholder="Zip or City, State" />
-		<div class="buttons">
-			<button id="btnGetGps" type="button" title="Get GPS Location"><img src="images/nav/ic_gps_fixed_black_18dp_1x.png" class="light"/>
-				<img src="images/nav/ic_gps_fixed_white_18dp_1x.png" class="dark"/>
-			</button>
-			<button id="btnGetLatLng" type="submit">GO</button>
-			<button id="btnClearQuery" type="reset">Reset</button>
-		</div>
+    <input id="txtAddress" type="text" value="" placeholder="Zip or City, State" />
+    <div class="buttons">
+      <button id="btnGetGps" type="button" title="Get GPS Location"><img src="images/nav/ic_gps_fixed_black_18dp_1x.png"
+          class="light" />
+        <img src="images/nav/ic_gps_fixed_white_18dp_1x.png" class="dark" />
+      </button>
+      <button id="btnGetLatLng" type="submit">GO</button>
+      <button id="btnClearQuery" type="reset">Reset</button>
+    </div>
   </div>
   <div id="version" style="display:none">
     <%- version %>
@@ -93,7 +93,7 @@
       <div id="loading" width="640" height="480">
         <div>
           <div class="title">WeatherStar 4000+ (Intl)</div>
-					<div class="version">v<%- version %></div>
+          <div class="version">v<%- version %></div>
           <div class="instructions">Enter your location above to continue</div>
         </div>
       </div>
@@ -146,7 +146,8 @@
     <div id="divTwcBottom">
       <div id="divTwcBottomLeft">
         <img id="NavigateMenu" class="navButton" src="images/nav/ic_menu_white_24dp_2x.png" title="Menu" />
-        <img id="NavigatePrevious" class="navButton" src="images/nav/ic_skip_previous_white_24dp_2x.png" title="Previous" />
+        <img id="NavigatePrevious" class="navButton" src="images/nav/ic_skip_previous_white_24dp_2x.png"
+          title="Previous" />
         <img id="NavigateNext" class="navButton" src="images/nav/ic_skip_next_white_24dp_2x.png" title="Next" />
         <img id="NavigatePlay" class="navButton" src="images/nav/ic_play_arrow_white_24dp_2x.png" title="Play" />
       </div>
@@ -155,7 +156,8 @@
       </div>
       <div id="divTwcBottomRight">
         <img id="ToggleMusic" class="navButton" src="images/nav/ic_volume_off_white_24dp_2x.png" title="Toggle Music" />
-        <img id="ToggleFullScreen" class="navButton" src="images/nav/ic_fullscreen_white_24dp_2x.png" title="Enter Fullscreen" />
+        <img id="ToggleFullScreen" class="navButton" src="images/nav/ic_fullscreen_white_24dp_2x.png"
+          title="Enter Fullscreen" />
       </div>
     </div>
   </div>
@@ -166,11 +168,19 @@
   </div> -->
 
   <div class="info">
-    <a class="github-button" href="https://github.com/mwood77/ws4kp-international" data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star mwood77/ws4kp-international on GitHub">Star</a>
-    <a class="github-button" href="https://github.com/mwood77/ws4kp-international/fork" data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" data-show-count="true" aria-label="Fork mwood77/ws4kp-international on GitHub">Fork</a>
+    <a class="github-button" href="https://github.com/mwood77/ws4kp-international"
+      data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-star"
+      data-size="large" data-show-count="true" aria-label="Star mwood77/ws4kp-international on GitHub">Star</a>
+    <a class="github-button" href="https://github.com/mwood77/ws4kp-international/fork"
+      data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-repo-forked"
+      data-size="large" data-show-count="true" aria-label="Fork mwood77/ws4kp-international on GitHub">Fork</a>
     <!-- <a class="github-button" href="https://github.com/mwood77" data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Follow @mwood77 on GitHub">Follow @mwood77</a> -->
-    <a class="github-button" href="https://github.com/mwood77/ws4kp-international/issues" data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" data-show-count="true" aria-label="Issue mwood77/ws4kp-international on GitHub">Issue</a>
-    <a class="github-button" href="https://github.com/sponsors/mwood77" data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-heart" data-size="large" aria-label="Sponsor @mwood77 on GitHub">Sponsor</a>
+    <a class="github-button" href="https://github.com/mwood77/ws4kp-international/issues"
+      data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-issue-opened"
+      data-size="large" data-show-count="true" aria-label="Issue mwood77/ws4kp-international on GitHub">Issue</a>
+    <a class="github-button" href="https://github.com/sponsors/mwood77"
+      data-color-scheme="no-preference: dark_dimmed; light: light; dark: dark;" data-icon="octicon-heart"
+      data-size="large" aria-label="Sponsor @mwood77 on GitHub">Sponsor</a>
   </div>
 
   <div style="height: 50px; width:400px" id="webamp-app"></div>
@@ -180,7 +190,8 @@
     <br />
     <br />
     Background info, linking, Q&A, other uses, and questions?<br />
-    - <a href="https://github.com/mwood77/ws4kp-international#weatherstar-4000-international" target="_blank">Check the readme</a>
+    - <a href="https://github.com/mwood77/ws4kp-international#weatherstar-4000-international" target="_blank">Check the
+      readme</a>
   </div>
 
   <div class="info">
@@ -192,11 +203,13 @@
         - <a href="https://archive.org/details/weatherscancompletecollection" target="_blank">Internet Archive</a><br />
         - <a href="https://twcclassics.com/" target="_blank">TWC Classics</a><br />
         - <a href="https://leafletjs.com/" target="_blank">Leaflet</a><br />
+        - <a href="https://server.arcgisonline.com/" target="_blank">ArcGIS REST</a><br />
       </div>
       <div>
         - <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a><br />
         - <a href="https://www.esri.com/" target="_blank">ESRI</a><br />
         - <a href="https://www.rainviewer.com/api.html" target="_blank">Rainviewer</a><br />
+        - <a href="https://meteogate.eu/" target="_blank">MeteoGate.eu</a><br />
       </div>
     </div>
   </div>
@@ -206,27 +219,29 @@
 
   </div>
 
-	<div class='heading'>Settings</div>
-	<div id='settings'>
-	</div>
+  <div class='heading'>Settings</div>
+  <div id='settings'>
+  </div>
 
-	<div class='heading'>Sharing</div>
-	<div class='info'>
-		<a href='' id='share-link'>Copy Permalink</a> <span id="share-link-copied">Link copied to clipboard!</span>
-		<div id="share-link-instructions">
-			Copy this long URL:
-			<input type='text' id="share-link-url"></div>
-		</div>
-	</div>
+  <div class='heading'>Sharing</div>
+  <div class='info'>
+    <a href='' id='share-link'>Copy Permalink</a> <span id="share-link-copied">Link copied to clipboard!</span>
+    <div id="share-link-instructions">
+      Copy this long URL:
+      <input type='text' id="share-link-url">
+    </div>
+  </div>
+  </div>
 
-	<div class='heading'>Forecast Information</div>
+  <div class='heading'>Forecast Information</div>
   <div id="divInfo">
     Location: <span id="spanCity"></span> <span id="spanState"></span><br />
   </div>
 
   <div id="divRefresh">
     Last Update: <span id="spanLastRefresh">(None)</span><br />
-    <input id="chkAutoRefresh" name="chkAutoRefresh" type="checkbox" /><label id="lblRefreshCountDown" for="chkAutoRefresh">Auto Refresh: <span id="spanRefreshCountDown">--:--</span></label>
+    <input id="chkAutoRefresh" name="chkAutoRefresh" type="checkbox" /><label id="lblRefreshCountDown"
+      for="chkAutoRefresh">Auto Refresh: <span id="spanRefreshCountDown">--:--</span></label>
   </div>
 
   <div class='heading'>Personal Weather Station Information</div>
@@ -236,249 +251,249 @@
   </div>
 
   <script type="module">
-      import Webamp from "https://unpkg.com/webamp@next";
-      const webamp = new Webamp({    
-          windowLayout: {
-            main: {
-              position: { top: 20, left: 0 },
-              shadeMode: true,
-            },
-            playlist: {
-              position: { top: 30, left: 0 },
-              shadeMode: true,
-              closed: false,
-            },
-          }, 
-          availableSkins: [
-            {
-              url: "https://archive.org/cors/winampskin_Green-Dimension-V2/Green-Dimension-V2.wsz",
-              name: "Green Dimension V2",
-            },
-            {
-              url: "https://archive.org/cors/winampskin_mac_os_x_1_5-aqua/mac_os_x_1_5-aqua.wsz",
-              name: "Mac OSX v1.5 (Aqua)",
-            },
-        ],
-        initialTracks: [
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Fair Weather",
-            },
-            url: "https://ia902804.us.archive.org/26/items/weatherscancompletecollection/01%20Fair%20Weather.mp3",
-            duration: 260
+    import Webamp from "https://unpkg.com/webamp@next";
+    const webamp = new Webamp({
+      windowLayout: {
+        main: {
+          position: { top: 20, left: 0 },
+          shadeMode: true,
+        },
+        playlist: {
+          position: { top: 30, left: 0 },
+          shadeMode: true,
+          closed: false,
+        },
+      },
+      availableSkins: [
+        {
+          url: "https://archive.org/cors/winampskin_Green-Dimension-V2/Green-Dimension-V2.wsz",
+          name: "Green Dimension V2",
+        },
+        {
+          url: "https://archive.org/cors/winampskin_mac_os_x_1_5-aqua/mac_os_x_1_5-aqua.wsz",
+          name: "Mac OSX v1.5 (Aqua)",
+        },
+      ],
+      initialTracks: [
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Fair Weather",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Lazy Days",
-            },
-            url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/01%20Lazy%20Days.mp3",
-            duration: 313
+          url: "https://ia902804.us.archive.org/26/items/weatherscancompletecollection/01%20Fair%20Weather.mp3",
+          duration: 260
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Lazy Days",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Beach Frolic",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/02%20Beach%20Frolic.mp3",
-            duration: 292
+          url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/01%20Lazy%20Days.mp3",
+          duration: 313
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Beach Frolic",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Good Ole Days",
-            },
-            url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/02%20Good%20Ole%20Days.mp3",
-            duration: 278
+          url: "https://archive.org/download/weatherscancompletecollection/02%20Beach%20Frolic.mp3",
+          duration: 292
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Good Ole Days",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Jumpin'",
-            },
-            url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/03%20Jumpin_.mp3",
-            duration: 300
+          url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/02%20Good%20Ole%20Days.mp3",
+          duration: 278
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Jumpin'",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Winter Tundra",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/03%20Winter%20Tundra.mp3",
-            duration: 284
+          url: "https://ia802804.us.archive.org/26/items/weatherscancompletecollection/03%20Jumpin_.mp3",
+          duration: 300
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Winter Tundra",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Life",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/04%20Life.mp3",
-            duration: 251
+          url: "https://archive.org/download/weatherscancompletecollection/03%20Winter%20Tundra.mp3",
+          duration: 284
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Life",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Rainy Days",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/04%20Rainy%20Days.mp3",
-            duration: 206
+          url: "https://archive.org/download/weatherscancompletecollection/04%20Life.mp3",
+          duration: 251
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Rainy Days",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Easy Times",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/05%20Easy%20Times.mp3",
-            duration: 258
+          url: "https://archive.org/download/weatherscancompletecollection/04%20Rainy%20Days.mp3",
+          duration: 206
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Easy Times",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Midnight Cruise",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/05%20Midnight%20Cruise.mp3",
-            duration: 204
+          url: "https://archive.org/download/weatherscancompletecollection/05%20Easy%20Times.mp3",
+          duration: 258
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Midnight Cruise",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Evening",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/06%20Evening.mp3",
-            duration: 251
+          url: "https://archive.org/download/weatherscancompletecollection/05%20Midnight%20Cruise.mp3",
+          duration: 204
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Evening",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Tropical Breeze",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/06%20Tropical%20Breeze.mp3",
-            duration: 252
+          url: "https://archive.org/download/weatherscancompletecollection/06%20Evening.mp3",
+          duration: 251
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Tropical Breeze",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Going Home",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/07%20Going%20Home.mp3",
-            duration: 275
+          url: "https://archive.org/download/weatherscancompletecollection/06%20Tropical%20Breeze.mp3",
+          duration: 252
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Going Home",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Smooth Sailing",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/07%20Smooth%20Sailing.mp3",
-            duration: 253
+          url: "https://archive.org/download/weatherscancompletecollection/07%20Going%20Home.mp3",
+          duration: 275
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Smooth Sailing",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "A New Day",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/08%20A%20New%20Day.mp3",
-            duration: 274
+          url: "https://archive.org/download/weatherscancompletecollection/07%20Smooth%20Sailing.mp3",
+          duration: 253
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "A New Day",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Brighter Days",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/08%20Brighter%20Days.mp3",
-            duration: 264
+          url: "https://archive.org/download/weatherscancompletecollection/08%20A%20New%20Day.mp3",
+          duration: 274
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Brighter Days",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Reflections In Time",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/09%20Reflections%20In%20Time.mp3",
-            duration: 261
+          url: "https://archive.org/download/weatherscancompletecollection/08%20Brighter%20Days.mp3",
+          duration: 264
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Reflections In Time",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "The Setting Sun",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/09%20The%20Setting%20Sun.mp3",
-            duration: 245
+          url: "https://archive.org/download/weatherscancompletecollection/09%20Reflections%20In%20Time.mp3",
+          duration: 261
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "The Setting Sun",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Do You Believe?",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/10%20Do%20You%20Believe.mp3",
-            duration: 271
+          url: "https://archive.org/download/weatherscancompletecollection/09%20The%20Setting%20Sun.mp3",
+          duration: 245
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Do You Believe?",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Memories Of The Past",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/10%20Memories%20Of%20The%20Past.mp3",
-            duration: 263
+          url: "https://archive.org/download/weatherscancompletecollection/10%20Do%20You%20Believe.mp3",
+          duration: 271
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Memories Of The Past",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Jamaican Jam",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/11%20Jamaican%20Jam.mp3",
-            duration: 249
+          url: "https://archive.org/download/weatherscancompletecollection/10%20Memories%20Of%20The%20Past.mp3",
+          duration: 263
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Jamaican Jam",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Late Nite Cafe",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/11%20Late%20Nite%20Cafe.mp3",
-            duration: 303
+          url: "https://archive.org/download/weatherscancompletecollection/11%20Jamaican%20Jam.mp3",
+          duration: 249
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Late Nite Cafe",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Good Times",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/12%20Good%20Times.mp3",
-            duration: 209
+          url: "https://archive.org/download/weatherscancompletecollection/11%20Late%20Nite%20Cafe.mp3",
+          duration: 303
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Good Times",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "The End Of The Journey",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/12%20The%20End%20Of%20The%20Journey.mp3",
-            duration: 249
+          url: "https://archive.org/download/weatherscancompletecollection/12%20Good%20Times.mp3",
+          duration: 209
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "The End Of The Journey",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "A Little Jazz",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/13%20A%20Little%20Jazz.mp3",
-            duration: 215
+          url: "https://archive.org/download/weatherscancompletecollection/12%20The%20End%20Of%20The%20Journey.mp3",
+          duration: 249
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "A Little Jazz",
           },
-          {
-            metaData: {
-              artist: "Trammell Starks",
-              title: "Care Free",
-            },
-            url: "https://archive.org/download/weatherscancompletecollection/13%20Care%20Free.mp3",
-            duration: 202
+          url: "https://archive.org/download/weatherscancompletecollection/13%20A%20Little%20Jazz.mp3",
+          duration: 215
+        },
+        {
+          metaData: {
+            artist: "Trammell Starks",
+            title: "Care Free",
           },
-        ],
-      });
+          url: "https://archive.org/download/weatherscancompletecollection/13%20Care%20Free.mp3",
+          duration: 202
+        },
+      ],
+    });
 
-      // Expose it globally for setting.mjs
-      window.webamp = webamp;
+    // Expose it globally for setting.mjs
+    window.webamp = webamp;
 
-      webamp.setVolume(100);
-      webamp.toggleRepeat();
-      webamp.toggleShuffle();
+    webamp.setVolume(100);
+    webamp.toggleRepeat();
+    webamp.toggleShuffle();
 
-      webamp.renderWhenReady(document.getElementById("webamp-app"));
+    webamp.renderWhenReady(document.getElementById("webamp-app"));
   </script>
   <script>
     (function () {
